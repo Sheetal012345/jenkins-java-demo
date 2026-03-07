@@ -1,6 +1,6 @@
 public class Hello {
     public static void main(String[] args) {
         System.out.println("Hello from GitHub using Jenkins!");
-        System.out.println("Updated newwwwwwwwwwwwwww version!");
+        System.out.println("Updated newwwwwwwwwwwwwww2222222222222 version!");
     }
 }
