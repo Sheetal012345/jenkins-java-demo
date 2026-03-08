@@ -1,61 +1,42 @@
 pipeline {
+    agent any
 
-agent any
+    stages {
 
-stages {
+        stage('Fetch File') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Sheetal012345/jenkins-java-demo.git'
+            }
+        }
 
-stage('Fetch File') {
+        stage('Building') {
+            steps {
+                echo 'Building Project....'
+                bat 'javac Hello.java'
+            }
+        }
 
-steps { git 'https://github.com/Sheetal012345/jenkins-java-demo.git'
+        stage('Execution') {
+            steps {
+                echo 'Executing Program'
+                bat 'java Hello'
+            }
+        }
 
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline Executed Successfully'
+        }
+
+        failure {
+            echo 'Pipeline Failed'
+        }
+    }
 }
-
-}
-
-stage('Building') {
-
-steps {
-
-echo 'Building Project....'
-
-bat 'javac Hello.java'
-
-}
-
-}
-
-stage('Execution') {
-
-steps {
-
-echo 'Executing Program'
-
-bat 'java Hello'
-
-}
-
-}
-
-stage('Deploy') {
-
-steps {
-
-echo 'Deploying....'
-
-}
-
-}
-
-}
-
-post{
-
-success{
-
-echo 'PipeLine Executed Successfully'
-
-}
-
-failure{
-
-echo 'PipeLine Failed'}}}
